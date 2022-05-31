@@ -9,7 +9,7 @@ class User {
    * локальном хранилище.
    * */
   static setCurrent(user) {
-
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   /**
@@ -17,7 +17,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-
+    localStorage.removeItem('user')
   }
 
   /**
@@ -25,7 +25,8 @@ class User {
    * из локального хранилища
    * */
   static current() {
-
+    let getCurrent = localStorage.getItem('user')
+    return getCurrent ? getCurrent : undefined
   }
 
   /**
@@ -33,7 +34,11 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch(callback) {
-
+    let options = {
+      callback
+    }
+    let request = createRequest(options)
+    request.response ? setCurrent(request.response.user) : unsetCurrent()
   }
 
   /**
@@ -43,18 +48,19 @@ class User {
    * User.setCurrent.
    * */
   static login(data, callback) {
-    createRequest({
+    let options = {
       url: this.URL + '/login',
       method: 'POST',
       responseType: 'json',
       data,
-      callback: (err, response) => {
-        if (response && response.user) {
-          this.setCurrent(response.user);
-        }
-        callback(err, response);
-      }
-    });
+      callback
+    }
+    let request = createRequest(options)
+    if (request.success) {
+      User.setCurrent(request.user)
+    } else if (request.error) {
+      console.error(request.error)
+    }
   }
 
   /**
@@ -64,7 +70,19 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback) {
-
+    let options = {
+      url: this.URL + '/register',
+      data,
+      method: 'POST',
+      callback
+    }
+    let request = createRequest(options)
+    if (request.success) {
+      User.setCurrent(request.user)
+    } else if (request.error) {
+      console.error(request.error.email)
+      console.error(request.error.password)
+    }
   }
 
   /**
@@ -72,6 +90,11 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
-
+    let options = {
+      url: this.URL + '/logout',
+      method: 'POST',
+      callback
+    }
+    createRequest(options)
   }
 }

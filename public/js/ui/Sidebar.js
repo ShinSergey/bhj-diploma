@@ -1,3 +1,8 @@
+const toggleButton = document.querySelector(".sidebar-toggle");
+const body = document.querySelector(".sidebar-mini");
+const menuLogin = document.querySelector(".menu-item_login");
+const menuRegister = document.querySelector(".menu-item_register");
+const menuLogout = document.querySelector(".menu-item_logout");
 /**
  * Класс Sidebar отвечает за работу боковой колонки:
  * кнопки скрытия/показа колонки в мобильной версии сайта
@@ -18,7 +23,10 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-
+    toggleButton.addEventListener("click", () => {
+      body.classList.toggle("sidebar-open");
+      body.classList.toggle("sidebar-collapse");
+    })
   }
 
   /**
@@ -29,6 +37,19 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-
+    const register = App.getModal("register");
+    const login = App.getModal("login");
+    menuRegister.addEventListener("click", () => {
+      register.open();
+    })
+    menuLogin.addEventListener("click", () => {
+      login.open();
+    })
+    menuLogout.addEventListener("click", () => {
+      User.logout()
+      if (response.success = true) {
+        App.setState('init')
+      }
+    })
   }
 }

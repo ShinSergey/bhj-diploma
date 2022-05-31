@@ -10,6 +10,16 @@ class LoginForm extends AsyncForm {
    * закрывает окно, в котором находится форма
    * */
   onSubmit(data) {
+    try {
+      User.login(data)
+      if (User.login(data)) {
+        this.LoginForm.reset()
+        App.setState('user-logged')
+      }
+    } catch (e) {
+      callback(e)
+    }
 
+    this.Modal.close()
   }
 }
