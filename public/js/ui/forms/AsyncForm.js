@@ -13,8 +13,8 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    if (element === undefined) {
-      console.error("Element is undefined");
+    if (!element) {
+      throw new Error("Element is undefined");
     }
     this.element = element;
     this.registerEvents();
@@ -57,7 +57,6 @@ class AsyncForm {
    * */
 
   submit() {
-    let data = this.getData()
-    this.onSubmit(data)
+    this.onSubmit(this.getData())
   }
 }

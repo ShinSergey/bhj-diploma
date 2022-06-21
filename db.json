@@ -5,6 +5,12 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "Сергей Шин",
+      "email": "oleg@demo.ru",
+      "password": "demo",
+      "id": "31b6dag0l4oknb1k"
     }
   ],
   "accounts": [

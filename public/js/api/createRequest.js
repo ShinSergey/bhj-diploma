@@ -5,40 +5,40 @@
 const createRequest = options => {
     const xhr = new XMLHttpRequest;
 
-    try {
-        if (options.method === "GET") {
-            xhr.open(options.method, (options.url + '?mail=' + options.data.mail + '&password=' + options.data.password));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
+    if (options.method === "GET") {
+        let url = options.url + '?';
+        let entries = Object.entries(options.data)
+        entries.forEach(element => {
+            if (url.slice(-1) !== '?') {
+                url += '&' + element[0] + '=' + element[1];
+            } else {
+                url += element[0] + '=' + element[1];
+            }
+        })
+        try {
+            xhr.open(options.method, url);
             xhr.send();
-        } else if (options.method !== "GET") {
-            formData = new FormData;
-
-            formData.append('mail', options.data.mail);
-            formData.append('password', options.data.password);
-
-            xhr.open(options.method, options.url);
-            xhr.send(formData);
+        } catch (e) {
+            xhr.response;
         }
     }
-    catch (e) {
-        console.log(e);
+    else {
+        let form = document.activeElement.parentElement.parentElement.querySelector(".form")
+        let formData = new FormData(form);
+        try {
+            xhr.open(options.method, options.url);
+            xhr.send(formData);
+        } catch (e) {
+            xhr.response;
+        }
     }
 
     xhr.responseType = 'json';
 
     xhr.addEventListener("error", () => {
-        console.log(xhr.response.error);
+        options.callback
     })
     xhr.addEventListener("load", () => {
-        console.log(xhr.response.success);
+        options.callback
     })
 };
-
-// createRequest({
-//     url: 'https://example.com',
-//     method: 'GET',
-//     data: {
-//         mail: 'ivan@biz.pro',
-//         password: 'obinobin'
-//     }
-// })
