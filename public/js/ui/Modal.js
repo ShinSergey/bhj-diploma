@@ -12,8 +12,8 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element) {
-    if (element === undefined) {
-      console.error("Element is undefined");
+    if (!element) {
+      throw new Error("Element is undefined");
     }
     this.element = element;
     this.registerEvents();
