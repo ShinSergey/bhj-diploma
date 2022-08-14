@@ -5,9 +5,10 @@
 const createRequest = options => {
     const xhr = new XMLHttpRequest;
     let formData;
-
+    let url = options.url
+    
     if (options.method === "GET") {
-        let url = options.url + '?';
+        url = options.url + '?';
         if (options.data) {let entries = Object.entries(options.data);
         entries.forEach(element => {
             if (url.slice(-1) !== '?') {
@@ -27,7 +28,7 @@ const createRequest = options => {
     }
 
     try {
-        xhr.open(options.method, options.url);
+        xhr.open(options.method, url);
         xhr.send(formData);
     } catch (e) {
         console.log(e);

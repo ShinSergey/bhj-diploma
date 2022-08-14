@@ -40,15 +40,11 @@ class TransactionsPage {
       if (e.target.classList.contains("remove-account")) {
         this.removeAccount()
       }
+      if (e.target.classList.contains("transaction__remove") || e.target.classList.contains("fa-trash")) {
+        let button = this.element.querySelector(".transaction__remove")
+        this.removeTransaction(button.dataset.id)
+      }
     })
-    let removeAccount = document.querySelector(".remove-account")
-    let removeTransaction = document.querySelector(".transaction__remove")
-    // removeAccount.addEventListener("click", () => {
-    //   this.removeAccount()
-    // })
-    // removeTransaction.addEventListener("click", () => {
-    //   this.removeTransaction()
-    // })
   }
 
   /**
@@ -61,14 +57,17 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-    let confirmAccount = confirm("Вы действительно хотите удалить счёт?");
-    if (confirmAccount) {
-      Account.remove({}, ((err, response) => {
-        if (response.success) {
-          App.updateWidgets()
-          App.updateForms()
-        }
-      }))
+    if (this.element.lastOptions) {
+      let confirmAccount = confirm("Вы действительно хотите удалить счёт?");
+      if (confirmAccount) {
+        Account.remove({ id: this.element.lastOptions.account_id }, ((err, response) => {
+          if (response.success) {
+            App.updateWidgets()
+            App.updateForms()
+          }
+        }))
+        this.clear();
+      }
     }
   }
   /**
@@ -80,7 +79,7 @@ class TransactionsPage {
   removeTransaction(id) {
     let confirmTrans = confirm("Вы действительно хотите удалить эту транзакцию?");
     if (confirmTrans) {
-      Transaction.remove(id, ((err, response) => {
+      Transaction.remove({id: id}, ((err, response) => {
         if (response.success) {
           App.update()
         }
@@ -96,15 +95,16 @@ class TransactionsPage {
    * */
   render(options) {
     if (options) {
+      this.clear();
       this.element.lastOptions = options
       Account.get(options.account_id, ((err, response) => {
         if (response.success) {
           this.renderTitle(response.data.name)
         }
       }))
-      Transaction.list({}, ((err, response) => {
+      Transaction.list({ account_id: options.account_id }, ((err, response) => {
         if (response.success && response.data) {
-          TransactionsPage.renderTransactions(response.data)
+          this.renderTransactions(response.data)
         }
       }))
     }
@@ -134,8 +134,9 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date) {
-
-
+    // еще работаю над ним
+    let newFormat = date
+    return newFormat;
   }
 
   /**
@@ -143,6 +144,8 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item) {
+    let format = item.created_at.replace('T', ' ').slice(0, -5);
+    this.formatDate(format);
     return `
       <div class="transaction transaction_${item.type} row">
     <div class="col-md-7 transaction__details">
@@ -152,7 +155,7 @@ class TransactionsPage {
       <div class="transaction__info">
           <h4 class="transaction__title">Новый будильник</h4>
           <!-- дата -->
-          <div class="transaction__date">10 марта 2019 г. в 03:20</div>
+          <div class="transaction__date">${this.formatDate(format)}</div>
       </div>
     </div>
     <div class="col-md-3">
@@ -175,11 +178,17 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data) {
-    data.forEach(e => {
-      let html = this.getTransactionHTML(e)
-      let content = this.element.querySelector(".content")
-      content.insertAdjacentHTML('beforeend', html);
-    })
+    let content = this.element.querySelector(".content")
+    if (Object.keys(data).length) {
+      data.forEach(e => {
+        let html = this.getTransactionHTML(e)
+        content.insertAdjacentHTML('beforeend', html);
+      })
+    } else {
+      let arr = Array.from(content.children);
+      arr.forEach(e => {
+        e.remove();
+      })
+    }
   }
-
 }

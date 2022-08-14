@@ -40,10 +40,11 @@ class AsyncForm {
    * */
   getData() {
     let obj = {};
-    const inputs = this.element.getElementsByTagName("input");
+    const inputs = this.element.querySelectorAll("input, select, textarea");
     Array.from(inputs).forEach(element => {
       obj[element.name] = element.value;
     });
+
     return obj;
   }
   

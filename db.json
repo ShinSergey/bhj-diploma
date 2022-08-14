@@ -42,16 +42,6 @@
       "id": "3"
     },
     {
-      "name": "pki.gov.kz",
-      "user_id": "31b6dag0l4oknb1k",
-      "id": "31b6dc08l58ljcn7"
-    },
-    {
-      "name": "вап",
-      "user_id": "31b6dag0l4oknb1k",
-      "id": "31b6d894l58m8vfr"
-    },
-    {
       "name": "pki",
       "user_id": "31b6dag0l4oknb1k",
       "id": "31b6dbwwl58myqgx"
@@ -60,11 +50,6 @@
       "name": "asdfg",
       "user_id": "31b6dag0l4oknb1k",
       "id": "31b6dw0l58o2v4p"
-    },
-    {
-      "name": "1",
-      "user_id": "31b6dag0l4oknb1k",
-      "id": "31b6dajcl5e9tlyv"
     },
     {
       "name": "2",
@@ -80,6 +65,21 @@
       "name": "4",
       "user_id": "31b6dag0l4oknb1k",
       "id": "31b6d50cl5eaqy36"
+    },
+    {
+      "name": "5",
+      "user_id": "31b6dag0l4oknb1k",
+      "id": "31b6d4ekl6b7n0om"
+    },
+    {
+      "name": "z",
+      "user_id": "31b6dag0l4oknb1k",
+      "id": "31b6d318l6b844p8"
+    },
+    {
+      "name": "akk",
+      "user_id": "31b6dag0l4oknb1k",
+      "id": "31b6d8jol6cb4mu0"
     }
   ],
   "transactions": [
@@ -289,6 +289,97 @@
       "sum": 1000,
       "user_id": "31b6dag0l4oknb1k",
       "created_at": "2022-07-19T17:32:44.389Z"
+    },
+    {
+      "id": "31b6d26kl6b6fme0",
+      "type": "income",
+      "name": "f",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-01T20:01:14.519Z"
+    },
+    {
+      "id": "31b6dd3kl6b6im7z",
+      "type": "income",
+      "name": "v",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-01T20:03:34.270Z"
+    },
+    {
+      "id": "31b6d22gl6cda8sr",
+      "type": "income",
+      "name": "sdfsdfs",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-02T16:00:47.114Z"
+    },
+    {
+      "id": "31b6d22gl6cdaql1",
+      "type": "income",
+      "name": "fdghfghhhh",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-02T16:01:10.165Z"
+    },
+    {
+      "id": "31b6d6zwl6i4faju",
+      "type": "income",
+      "name": "pki.gov.kz",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-06T16:39:23.177Z"
+    },
+    {
+      "id": "31b6d2wwl6i57bn9",
+      "type": "expense",
+      "name": "cegxbr",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-06T17:01:10.964Z"
+    },
+    {
+      "id": "31b6da1gl6js4hz8",
+      "type": "income",
+      "name": "sdf",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-07T20:30:36.547Z"
+    },
+    {
+      "id": "31b6dajwl6js6pt6",
+      "type": "expense",
+      "name": "fghfgh",
+      "sum": 1000,
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-07T20:32:20.009Z"
+    },
+    {
+      "id": "31b6d4t0l6tkoeqs",
+      "type": "income",
+      "name": "1",
+      "sum": 1000,
+      "account_id": "31b6dbwwl58myqgx",
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-14T16:59:50.307Z"
+    },
+    {
+      "id": "31b6dbs8l6tkomy2",
+      "type": "expense",
+      "name": "2",
+      "sum": 1000,
+      "account_id": "31b6dbwwl58myqgx",
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-14T17:00:00.937Z"
+    },
+    {
+      "id": "31b6d6cgl6tkub05",
+      "type": "income",
+      "name": "1000",
+      "sum": 1,
+      "account_id": "31b6dbwwl58myqgx",
+      "user_id": "31b6dag0l4oknb1k",
+      "created_at": "2022-08-14T17:04:25.396Z"
     }
   ]
 }

@@ -56,12 +56,10 @@ class AccountsWidget {
   update() {
     let currUser = User.current()
     if (currUser) {
-      Account.list(currUser, ((err, response) => {
+      Account.list({}, ((err, response) => {
         if (response.success) {
           this.clear()
           this.renderItem(response.data)
-        } else {
-          throw new Error(err);
         }
       }))
     }
