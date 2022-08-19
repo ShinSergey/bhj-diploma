@@ -41,7 +41,7 @@ class TransactionsPage {
         this.removeAccount()
       }
       if (e.target.classList.contains("transaction__remove") || e.target.classList.contains("fa-trash")) {
-        let button = this.element.querySelector(".transaction__remove")
+        let button = e.target.closest(".transaction__remove")
         this.removeTransaction(button.dataset.id)
       }
     })
@@ -135,7 +135,10 @@ class TransactionsPage {
    * */
   formatDate(date) {
     // еще работаю над ним
-    let newFormat = date
+    let newDate = new Date(date.slice(0, -9).replaceAll("-", ", "))
+    let n = newDate.toDateString() 
+    let newTime = date.slice(11, 19).replaceAll(":", ", ")
+    let newFormat = new Date(date)
     return newFormat;
   }
 
@@ -153,7 +156,7 @@ class TransactionsPage {
           <span class="fa fa-money fa-2x"></span>
       </div>
       <div class="transaction__info">
-          <h4 class="transaction__title">Новый будильник</h4>
+          <h4 class="transaction__title">${item.name}</h4>
           <!-- дата -->
           <div class="transaction__date">${this.formatDate(format)}</div>
       </div>

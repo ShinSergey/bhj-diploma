@@ -355,31 +355,13 @@
       "created_at": "2022-08-07T20:32:20.009Z"
     },
     {
-      "id": "31b6d4t0l6tkoeqs",
-      "type": "income",
-      "name": "1",
-      "sum": 1000,
-      "account_id": "31b6dbwwl58myqgx",
-      "user_id": "31b6dag0l4oknb1k",
-      "created_at": "2022-08-14T16:59:50.307Z"
-    },
-    {
-      "id": "31b6dbs8l6tkomy2",
+      "id": "31b6d8p4l6z4vz16",
       "type": "expense",
-      "name": "2",
+      "name": "Купил",
       "sum": 1000,
       "account_id": "31b6dbwwl58myqgx",
       "user_id": "31b6dag0l4oknb1k",
-      "created_at": "2022-08-14T17:00:00.937Z"
-    },
-    {
-      "id": "31b6d6cgl6tkub05",
-      "type": "income",
-      "name": "1000",
-      "sum": 1,
-      "account_id": "31b6dbwwl58myqgx",
-      "user_id": "31b6dag0l4oknb1k",
-      "created_at": "2022-08-14T17:04:25.396Z"
+      "created_at": "2022-08-18T14:24:26.393Z"
     }
   ]
 }
