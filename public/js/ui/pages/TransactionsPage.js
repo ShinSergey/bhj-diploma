@@ -79,7 +79,7 @@ class TransactionsPage {
   removeTransaction(id) {
     let confirmTrans = confirm("Вы действительно хотите удалить эту транзакцию?");
     if (confirmTrans) {
-      Transaction.remove({id: id}, ((err, response) => {
+      Transaction.remove({ id: id }, ((err, response) => {
         if (response.success) {
           App.update()
         }
@@ -134,12 +134,15 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date) {
-    // еще работаю над ним
     let newDate = new Date(date.slice(0, -9).replaceAll("-", ", "))
-    let n = newDate.toDateString() 
-    let newTime = date.slice(11, 19).replaceAll(":", ", ")
-    let newFormat = new Date(date)
-    return newFormat;
+    let options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }
+    let newTime = " в " + date.slice(11, 16)
+    let formated = newDate.toLocaleDateString('ru-RU', options) + newTime
+    return formated;
   }
 
   /**
